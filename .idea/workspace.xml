@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="2ae0ba13-5b24-4393-8309-9266090fd9aa" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/DiplomaProject.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DiplomaProject/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DiplomaProject/asgi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DiplomaProject/settings.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DiplomaProject/urls.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/DiplomaProject/wsgi.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/diagram.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/diagram.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/myapp_models.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/myproject/myapp/forms.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/myproject/myapp/management/commands/distribute_students_command.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/myproject/myapp/migrations/0005_courseapplication.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/myproject/myapp/migrations/0009_course_semester.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/myproject/myapp/migrations/0010_courseapplication_semester.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/myproject/myapp/migrations/0011_alter_courseapplication_semester.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/myproject/myapp/migrations/0012_alter_courseapplication_semester.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/myproject/myapp/migrations/0013_course_catalog_alter_course_semester.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pseudocode.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/applied_courses.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/apply_courses.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/assigned_courses.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/course_selection.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/personal_cabinet.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/registration/logged_out.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/registration/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/registration/password_change_done.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/registration/password_change_form.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/registration/password_reset_complete.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/registration/password_reset_confirm.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/registration/password_reset_done.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/registration/password_reset_form.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/semester_course_selection.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/student_dashboard.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
+  <component name="ProjectId" id="2fvaTXL5ekcn4BQBgI9yvb8NB0z" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Django Server.DiplomaProject.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;django.template.preview.state&quot;: &quot;SHOW_EDITOR_AND_PREVIEW&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Users\User\PycharmProjects\DiplomaProject" />
+      <recent name="D:\Users\User\PycharmProjects\DiplomaProject\templates" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="DiplomaProject" type="Python.DjangoServer" factoryName="Django server">
+      <module name="DiplomaProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+        <env name="DJANGO_SETTINGS_MODULE" value="DiplomaProject.settings" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="launchJavascriptDebuger" value="false" />
+      <option name="port" value="8000" />
+      <option name="host" value="localhost" />
+      <option name="additionalOptions" value="" />
+      <option name="browserUrl" value="" />
+      <option name="runTestServer" value="false" />
+      <option name="runNoReload" value="false" />
+      <option name="useCustomRunCommand" value="false" />
+      <option name="customRunCommand" value="" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-PY-241.15989.155" />
+        <option value="bundled-python-sdk-babbdf50b680-7c6932dee5e4-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-241.15989.155" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2ae0ba13-5b24-4393-8309-9266090fd9aa" name="Changes" comment="" />
+      <created>1714684014347</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1714684014347</updated>
+      <workItem from="1714684016740" duration="2624000" />
+      <workItem from="1714773274049" duration="793000" />
+      <workItem from="1714815626140" duration="9724000" />
+      <workItem from="1714925427150" duration="3433000" />
+      <workItem from="1715010268770" duration="4639000" />
+      <workItem from="1715093250868" duration="12838000" />
+      <workItem from="1715154726422" duration="17953000" />
+      <workItem from="1715185429711" duration="9134000" />
+      <workItem from="1715278071265" duration="7905000" />
+      <workItem from="1715331670878" duration="12493000" />
+      <workItem from="1715358169596" duration="5235000" />
+      <workItem from="1715408832436" duration="496000" />
+      <workItem from="1715431474981" duration="1021000" />
+      <workItem from="1715442978262" duration="1261000" />
+      <workItem from="1715444271079" duration="10624000" />
+      <workItem from="1715461058506" duration="2603000" />
+      <workItem from="1715506919755" duration="19524000" />
+      <workItem from="1715581321990" duration="16663000" />
+      <workItem from="1715680254164" duration="13502000" />
+      <workItem from="1715754893528" duration="20815000" />
+      <workItem from="1715844536828" duration="6032000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName=".env" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+</project>

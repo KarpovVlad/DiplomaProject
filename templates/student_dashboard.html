@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Вітаємо, {{ student.user.first_name }}!</h1>
+  
+  <div>
+    <a href="{% url 'personal_cabinet' %}">
+      <button>Особистий кабінет</button>
+    </a>
+    <a href="{% url 'course_selection' %}">
+      <button>Вибір дисциплін</button>
+    </a>
+  </div>
+{% endblock %}

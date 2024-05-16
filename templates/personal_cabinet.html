@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Особистий кабінет</h1>
+  <form id="studentForm" method="post">
+    {% csrf_token %}
+    <p>Ім'я: <input type="text" name="first_name" value="{{ student.user.first_name }}" disabled></p>
+    <p>Прізвище: <input type="text" name="last_name" value="{{ student.user.last_name }}" disabled></p>
+    <p>Електронна пошта: {{ student.user.email }}</p>
+    <a href="{% url 'password_change' %}" class="btn">Змінити пароль</a>
+    <p>Кафедра: {{ student.department.name }}</p>
+    <p>Середній бал: <input type="text" name="average_grade" value="{{ student.average_grade }}" disabled></p>
+    <p>Курс: <input type="number" name="current_course" value="{{ student.current_course }}" disabled></p>
+    <button type="button" id="editButton" onclick="enableEditing()">Редагувати</button>
+    <button type="submit" id="saveButton" style="display:none;">Зберегти зміни</button>
+  </form>
+  
+  {% if student.document %}
+    <h2>ІНП</h2>
+    <p><a href="{{ student.document.url }}" download="{{ student.document.name }}">Завантажити ІНП</a></p>
+  {% else %}
+    <h2>ІНП</h2>
+    <p>ІНП ще не згенеровано.</p>
+  {% endif %}
+  
+  <a href="{% url 'assigned_courses' %}" class="btn">Переглянути призначені дисципліни</a>
+  <a href="{% url 'applied_courses' %}" class="btn">Переглянути подані заявки</a>
+  
+  <script type="text/javascript">
+    function enableEditing() {
+      var form = document.getElementById('studentForm');
+      var elements = form.elements;
+      for (var i = 0, len = elements.length; i < len; ++i) {
+        if (elements[i].type !== "submit" && elements[i].type !== "button" && elements[i].name !== "email") {
+          elements[i].disabled = false;
+        }
+      }
+      document.getElementById('editButton').style.display = 'none';
+      document.getElementById('saveButton').style.display = 'inline';
+    }
+    
+    window.onload = function() {
+      var form = document.getElementById('studentForm');
+      var elements = form.elements;
+      for (var i = 0, len = elements.length; i < len; ++i) {
+        if (elements[i].type !== "submit" && elements[i].type !== "button") {
+          elements[i].disabled = true;
+        }
+      }
+    }
+  </script>
+{% endblock %}

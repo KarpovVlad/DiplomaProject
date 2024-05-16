@@ -1,0 +1,38 @@
+<!-- course_selection.html -->
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Вибір дисциплін</h1>
+  
+  <h2>Ваш поточний курс: {{ student.current_course }}</h2>
+  
+  {% for catalog in "123456" %}
+    <h3>Каталог {{ catalog }} для семестрів {{ semesters.0 }} та {{ semesters.1 }}:</h3>
+    <ul>
+      {% for course in available_courses %}
+        {% if course.catalog|stringformat:"s" == catalog %}
+          <li>
+            <p>{{ course.name }} - Викладач: {{ course.professor.name }}</p>
+        {% if course.user_priority %}
+            <span>(Заявка подана, пріоритет: {{ course.user_priority }})</span>
+            {% else %}
+              <form method="post" action="{% url 'course_selection' %}">
+                {% csrf_token %}
+                <input type="hidden" name="course_id" value="{{ course.id }}">
+                <input type="number" name="priority" min="1" max="5" required>
+                <button type="submit">Подати заявку</button>
+              </form>
+            {% endif %}
+          </li>
+        {% endif %}
+      {% empty %}
+        <li>На даний момент немає доступних курсів.</li>
+      {% endfor %}
+    </ul>
+  {% endfor %}
+  
+  <a href="{% url 'student_dashboard' %}">
+    <button>Назад до головної</button>
+  </a>
+  
+{% endblock %}

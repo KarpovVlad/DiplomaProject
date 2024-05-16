@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Обрані дисципліни</h1>
+  {% for semester, courses in courses_by_semester.items %}
+    <h2>Семестр {{ semester }}</h2>
+    <ul>
+      {% for course in courses %}
+        <li>{{ course.name }} - Викладач: {{ course.professor.name }}</li>
+      {% endfor %}
+    </ul>
+  {% empty %}
+    <p>У вас немає обраних дисциплін.</p>
+  {% endfor %}
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Доступні курси</h1>
+  <ul>
+    {% for course in available_courses %}
+      <li>{{ course.name }} - Викладач: {{ course.professor.name }}
+        <form method="post" action="{% url 'apply_course' course.id %}">
+          {% csrf_token %}
+          <input type="number" name="priority" min="1" max="5" required>
+          <button type="submit">Подати заявку</button>
+        </form>
+      </li>
+    {% empty %}
+      <li>На даний момент немає доступних курсів.</li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'dashboard' %}">Повернутися до головного дешборду</a>
+{% endblock %}
