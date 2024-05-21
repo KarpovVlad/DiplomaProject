@@ -1,13 +1,17 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Подані заявки на курси</h1>
-  <ul>
-    {% for application in applications %}
-      <li>{{ application.course.name }} - Пріоритет: {{ application.priority }} - Семестр: {{ application.course.semester }}</li>
-    {% empty %}
-      <li>Ви ще не подали жодної заявки.</li>
-    {% endfor %}
-  </ul>
-  <a href="{% url 'student_dashboard' %}">Повернутися до головної сторінки</a>
+  <div class="applications-container">
+    <h1>Подані заявки на курси</h1>
+    <ul class="applications-list">
+      {% for application in applications %}
+        <li>{{ application.course.name }} - Пріоритет: {{ application.priority }} - Семестр: {{ application.course.semester }}</li>
+      {% empty %}
+        <li>Ви ще не подали жодної заявки.</li>
+      {% endfor %}
+    </ul>
+  </div>
+    <a href="{% url 'student_dashboard' %}">
+      <button class="back-btn">Назад до головної</button>
+    </a>
 {% endblock %}

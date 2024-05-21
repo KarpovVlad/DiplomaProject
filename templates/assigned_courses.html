@@ -2,14 +2,51 @@
 
 {% block content %}
   <h1>Обрані дисципліни</h1>
-  {% for semester, courses in courses_by_semester.items %}
-    <h2>Семестр {{ semester }}</h2>
-    <ul>
-      {% for course in courses %}
-        <li>{{ course.name }} - Викладач: {{ course.professor.name }}</li>
-      {% endfor %}
-    </ul>
-  {% empty %}
-    <p>У вас немає обраних дисциплін.</p>
-  {% endfor %}
+  <div class="semester-group">
+    <div class="semester-block">
+      <h2>Семестр 3</h2>
+      <ul>
+        {% for course in courses_by_semester.3 %}
+          <li>{{ course.name }} - Викладач: {{ course.professor.name }}</li>
+        {% endfor %}
+      </ul>
+      <h2>Семестр 4</h2>
+      <ul>
+        {% for course in courses_by_semester.4 %}
+          <li>{{ course.name }} - Викладач: {{ course.professor.name }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="semester-block">
+      <h2>Семестр 5</h2>
+      <ul>
+        {% for course in courses_by_semester.5 %}
+          <li>{{ course.name }} - Викладач: {{ course.professor.name }}</li>
+        {% endfor %}
+      </ul>
+      <h2>Семестр 6</h2>
+      <ul>
+        {% for course in courses_by_semester.6 %}
+          <li>{{ course.name }} - Викладач: {{ course.professor.name }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="semester-block">
+      <h2>Семестр 7</h2>
+      <ul>
+        {% for course in courses_by_semester.7 %}
+          <li>{{ course.name }} - Викладач: {{ course.professor.name }}</li>
+        {% endfor %}
+      </ul>
+      <h2>Семестр 8</h2>
+      <ul>
+        {% for course in courses_by_semester.8 %}
+          <li>{{ course.name }} - Викладач: {{ course.professor.name }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+    <a href="{% url 'student_dashboard' %}">
+      <button class="back-btn">Назад до головної</button>
+    </a>
 {% endblock %}

@@ -44,8 +44,6 @@ urlpatterns = [
     path('course-selection/semester/<int:semester>/', SemesterCourseSelectionView.as_view(),
          name='semester_course_selection'),
     path('apply_course/<int:course_id>/', apply_course, name='apply_course'),
-    #path('admin/distribution/start/', views.start_distribution_view, name='start_distribution'),
-    #path('admin/distribution/status/', views.distribution_status_view, name='distribution_status'),
 ]
 
 if settings.DEBUG:

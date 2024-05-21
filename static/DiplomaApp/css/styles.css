@@ -1,0 +1,356 @@
+/* Reset some basic elements */
+body, h1, h2, h3, h4, h5, h6, p, ul {
+    margin: 0;
+    padding: 0;
+}
+
+/* Set a global font and background color */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* Style the header */
+header {
+    background: #4b4b4b; /* Asphalt grey color */
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+/* Style the navigation bar */
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Style the login and logout buttons */
+#logout-form {
+    margin: 0;
+}
+
+#logout-form button {
+    background: darkred; /* Asphalt grey */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#logout-form button:hover {
+    background: #333; /* Darker grey */
+}
+
+/* Style the main content area */
+main {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%; /* Adjusted for more content */
+    margin: 0 auto;
+}
+
+main h1, main h2 {
+    font-size: 1.5em;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Style paragraphs and lists */
+main p {
+    margin-bottom: 20px;
+    text-align: left; /* Align text to the left */
+}
+
+main ul {
+    list-style: disc inside;
+    margin-bottom: 20px;
+}
+
+/* Style forms and buttons */
+form.student-form p {
+    text-align: left; /* Align form labels to the left */
+}
+
+form input[type="text"], form input[type="number"], form input[type="password"], form select {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form input.course-input {
+    width: 50px; /* Fixed width for the course input */
+    text-align: center; /* Center the number in the input */
+}
+
+form button, .submit-btn {
+    background: #4b4b4b; /* Asphalt grey */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 10px; /* To provide space between buttons */
+}
+
+form button:hover, .submit-btn:hover {
+    background: #333; /* Darker grey */
+}
+
+.edit-btn {
+    float: right; /* Move the edit button to the right */
+}
+
+/* Style tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+table th {
+    background: #f2f2f2;
+}
+
+table tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+/* Style links */
+a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Additional styles */
+a.forgot-password {
+    color: cornflowerblue;
+}
+
+a.forgot-password:hover {
+    text-decoration: underline;
+}
+
+/* Button group styles */
+.button-group {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.button-group .btn-secondary {
+    display: inline-block;
+    margin: 0 10px;
+    padding: 10px 20px;
+    background-color: #4b4b4b;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.button-group .btn-secondary:hover {
+    background-color: #333;
+}
+
+/* Semester block styles */
+.semester-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.semester-block {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 48%; /* Adjust to have two blocks per row */
+    margin-bottom: 20px;
+}
+
+.semester-block h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.semester-block ul {
+    padding-left: 20px;
+}
+
+/* Additional styles for semester blocks layout */
+.semester-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.semester-block {
+    flex: 1 1 calc(50% - 20px); /* Two blocks per row with space between */
+}
+
+/* Styles for the applications container */
+.applications-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%; /* Adjusted for more content */
+    margin: 0 auto;
+    text-align: left; /* Align text to the left */
+}
+
+.applications-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.applications-list {
+    list-style: disc inside;
+    margin-bottom: 20px;
+}
+
+.applications-list li {
+    margin-bottom: 10px;
+}
+
+.btn-primary {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4b4b4b;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn-primary:hover {
+    background-color: #333;
+}
+
+/* Dashboard specific styles */
+.dashboard-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.dashboard-button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.dashboard-action-button {
+    background: #4b4b4b; /* Asphalt grey */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.dashboard-action-button:hover {
+    background: #333; /* Darker grey */
+}
+
+/* Course selection specific styles */
+.course-selection-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.course-selection-container h1, .course-selection-container h2 {
+    margin-bottom: 20px;
+}
+
+.catalog-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.catalog-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.catalog-block {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 32%;
+}
+
+.catalog-block h3 {
+    margin-bottom: 10px;
+}
+
+.catalog-block ul {
+    padding-left: 20px;
+    text-align: left;
+}
+
+.back-btn {
+    background: #4b4b4b;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.back-btn:hover {
+    background: #333;
+}

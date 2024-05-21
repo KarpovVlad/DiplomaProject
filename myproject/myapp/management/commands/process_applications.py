@@ -70,7 +70,4 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         faculty_ids = options.get('faculty')
-        process_applications_task(faculty_ids=faculty_ids, verbose_name='Розподіл студентів по факультетах')
-
-
-process_applications_task(faculty_ids=[1, 2, 3])
+        process_applications_task(faculty_ids=faculty_ids)

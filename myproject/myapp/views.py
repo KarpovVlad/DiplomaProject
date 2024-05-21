@@ -8,7 +8,6 @@ from django.views import View
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib.auth.mixins import LoginRequiredMixin
-#from .management.commands.distribute_students_command import process_applications_task
 import os
 
 
@@ -94,6 +93,10 @@ class CourseSelectionView(View):
                 semesters = []
 
             available_courses = Course.objects.filter(department_id__in=department_ids, semester__in=semesters)
+
+            # Виключаємо курси, на які студент вже зарахований
+            enrolled_courses = CourseEnrollment.objects.filter(student=student).values_list('course', flat=True)
+            available_courses = available_courses.exclude(id__in=enrolled_courses)
 
             # Отримуємо заявки студента
             applications = CourseApplication.objects.filter(student=student)
@@ -253,12 +256,3 @@ class AppliedCoursesView(LoginRequiredMixin, TemplateView):
             messages.error(self.request, "Ваш профіль студента не знайдено. Зверніться до адміністратора.")
             return redirect('profile_creation')
         return context
-
-#def start_distribution_view(request):
-#    process_applications_task()
-#    return HttpResponse("Розподіл студентів розпочато.")
-
-
-#def distribution_status_view(request):
-#     Тут може бути логіка для перевірки стану задачі
-#     return HttpResponse("Статус розподілу: ...")

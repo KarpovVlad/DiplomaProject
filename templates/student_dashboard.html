@@ -1,14 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Вітаємо, {{ student.user.first_name }}!</h1>
+  <div class="dashboard-container">
+    <h1>Вітаємо, {{ student.user.first_name }}!</h1>
   
-  <div>
-    <a href="{% url 'personal_cabinet' %}">
-      <button>Особистий кабінет</button>
-    </a>
-    <a href="{% url 'course_selection' %}">
-      <button>Вибір дисциплін</button>
-    </a>
+    <div class="dashboard-button-container">
+      <a href="{% url 'personal_cabinet' %}">
+        <button class="dashboard-action-button">Особистий кабінет</button>
+      </a>
+      <a href="{% url 'course_selection' %}">
+        <button class="dashboard-action-button">Вибір дисциплін</button>
+      </a>
+    </div>
   </div>
 {% endblock %}

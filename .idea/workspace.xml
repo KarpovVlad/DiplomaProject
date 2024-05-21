@@ -5,47 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ae0ba13-5b24-4393-8309-9266090fd9aa" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/DiplomaProject.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DiplomaProject/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DiplomaProject/asgi.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DiplomaProject/settings.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DiplomaProject/urls.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/DiplomaProject/wsgi.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/diagram.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/diagram.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myapp_models.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myproject/myapp/forms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myproject/myapp/management/commands/distribute_students_command.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myproject/myapp/migrations/0005_courseapplication.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myproject/myapp/migrations/0009_course_semester.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myproject/myapp/migrations/0010_courseapplication_semester.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myproject/myapp/migrations/0011_alter_courseapplication_semester.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myproject/myapp/migrations/0012_alter_courseapplication_semester.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/myproject/myapp/migrations/0013_course_catalog_alter_course_semester.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pseudocode.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/applied_courses.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/apply_courses.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/assigned_courses.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/course_selection.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/personal_cabinet.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/registration/logged_out.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/registration/login.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/registration/password_change_done.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/registration/password_change_form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/registration/password_reset_complete.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/registration/password_reset_confirm.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/registration/password_reset_done.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/registration/password_reset_form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/semester_course_selection.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/student_dashboard.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/myproject/myapp/management/commands/process_applications.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/DiplomaApp/css/styles.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DiplomaProject/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/DiplomaProject/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/documents/vladster567@gmail.com_IDP.docx" beforeDir="false" afterPath="$PROJECT_DIR$/documents/vladster567@gmail.com_IDP.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myproject/myapp/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/myapp/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myproject/myapp/management/commands/distribute_students_command.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/myapp/management/commands/distribute_students_command.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myproject/myapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/myapp/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/applied_courses.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/applied_courses.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/assigned_courses.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/assigned_courses.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/course_selection.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/course_selection.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/personal_cabinet.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/personal_cabinet.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/registration/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/student_dashboard.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/student_dashboard.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,6 +31,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
+        <option value="CSS File" />
         <option value="Python Script" />
       </list>
     </option>
@@ -74,28 +50,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;Django Server.DiplomaProject.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenDjangoStructureViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;django.template.preview.state&quot;: &quot;SHOW_EDITOR_AND_PREVIEW&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Django Server.DiplomaProject.executor": "Run",
+    "RunOnceActivity.OpenDjangoStructureViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "django.template.preview.state": "SHOW_EDITOR_AND_PREVIEW",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\Users\User\PycharmProjects\DiplomaProject" />
       <recent name="D:\Users\User\PycharmProjects\DiplomaProject\templates" />
+      <recent name="D:\Users\User\PycharmProjects\DiplomaProject\templates\css" />
+      <recent name="D:\Users\User\PycharmProjects\DiplomaProject" />
     </key>
   </component>
   <component name="RunManager">
@@ -161,7 +139,10 @@
       <workItem from="1715581321990" duration="16663000" />
       <workItem from="1715680254164" duration="13502000" />
       <workItem from="1715754893528" duration="20815000" />
-      <workItem from="1715844536828" duration="6032000" />
+      <workItem from="1715844536828" duration="9558000" />
+      <workItem from="1715870876038" duration="1874000" />
+      <workItem from="1715933235644" duration="1922000" />
+      <workItem from="1716274771857" duration="13039000" />
     </task>
     <servers />
   </component>

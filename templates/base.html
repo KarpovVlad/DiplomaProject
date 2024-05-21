@@ -2,22 +2,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}My Site{% endblock %}</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'DiplomaApp/css/styles.css' %}">
 </head>
 <body>
     <header>
-        <h1>My Site</h1>
+        <h1>EduChoose</h1>
         <nav>
             <ul>
-                <li><a href="{% url 'login' %}">Login</a></li>
             </ul>
         </nav>
+        <form id="logout-form" method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit">Вийти</button>
+        </form>
     </header>
-    <form id="logout-form" method="post" action="{% url 'logout' %}">
-  {% csrf_token %}
-  <button type="submit">Вийти</button>
-    </form>
     <main>
         {% block content %}
         {% endblock %}

@@ -2,31 +2,36 @@
 
 {% block content %}
   <h1>Особистий кабінет</h1>
-  <form id="studentForm" method="post">
+  <form id="studentForm" method="post" class="student-form">
     {% csrf_token %}
     <p>Ім'я: <input type="text" name="first_name" value="{{ student.user.first_name }}" disabled></p>
     <p>Прізвище: <input type="text" name="last_name" value="{{ student.user.last_name }}" disabled></p>
     <p>Електронна пошта: {{ student.user.email }}</p>
     <a href="{% url 'password_change' %}" class="btn">Змінити пароль</a>
     <p>Кафедра: {{ student.department.name }}</p>
-    <p>Середній бал: <input type="text" name="average_grade" value="{{ student.average_grade }}" disabled></p>
-    <p>Курс: <input type="number" name="current_course" value="{{ student.current_course }}" disabled></p>
-    <button type="button" id="editButton" onclick="enableEditing()">Редагувати</button>
+    <p>Середній бал: {{ student.average_grade }}</p>
+    <p>Курс: <input type="number" name="current_course" value="{{ student.current_course }}" class="course-input" disabled></p>
+    <button type="button" id="editButton" onclick="enableEditing()" class="edit-btn">Редагувати</button>
     <button type="submit" id="saveButton" style="display:none;">Зберегти зміни</button>
   </form>
   
   {% if student.document %}
     <h2>ІНП</h2>
-    <p><a href="{{ student.document.url }}" download="{{ student.document.name }}">Завантажити ІНП</a></p>
+    <p><a href="{{ student.document.url }}" download="{{ student.document.name }}" class="btn">Завантажити ІНП</a></p>
   {% else %}
     <h2>ІНП</h2>
     <p>ІНП ще не згенеровано.</p>
   {% endif %}
   
-  <a href="{% url 'assigned_courses' %}" class="btn">Переглянути призначені дисципліни</a>
-  <a href="{% url 'applied_courses' %}" class="btn">Переглянути подані заявки</a>
-  
-  <script type="text/javascript">
+  <div class="button-group">
+    <a href="{% url 'assigned_courses' %}" class="btn btn-secondary">Переглянути призначені дисципліни</a>
+    <a href="{% url 'applied_courses' %}" class="btn btn-secondary">Переглянути подані заявки</a>
+  </div>
+    <a href="{% url 'student_dashboard' %}">
+      <button class="back-btn">Назад до головної</button>
+    </a>
+
+    <script type="text/javascript">
     function enableEditing() {
       var form = document.getElementById('studentForm');
       var elements = form.elements;

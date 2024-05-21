@@ -45,30 +45,30 @@ def generate_idp_for_group(department_id):
         generate_idp_for_student(student.id)
 
 
-class UniversityAdmin(admin.ModelAdmin):
+class UniversityAdmin(ImportExportModelAdmin):
     list_display = ('name',)
     search_fields = ('name',)
 
 
-class FacultyAdmin(admin.ModelAdmin):
+class FacultyAdmin(ImportExportModelAdmin):
     list_display = ('name', 'university')
     search_fields = ('name', 'university__name')
     list_filter = ('university__name',)
 
 
-class DepartmentAdmin(admin.ModelAdmin):
+class DepartmentAdmin(ImportExportModelAdmin):
     list_display = ('name', 'faculty')
     search_fields = ('name', 'faculty__name')
     list_filter = ('faculty__name', 'faculty__university__name')
 
 
-class ProfessorAdmin(admin.ModelAdmin):
+class ProfessorAdmin(ImportExportModelAdmin):
     list_display = ('name', 'department')
     search_fields = ('name',)
     list_filter = ('department__name',)
 
 
-class CourseAdmin(admin.ModelAdmin):
+class CourseAdmin(ImportExportModelAdmin):
     list_display = ('name', 'department', 'professor', 'seats', 'prerequisite')
     search_fields = ('name', 'professor__name', 'department__name')
     list_filter = ('department__name', 'professor__name', 'department__faculty__university__name')
@@ -110,13 +110,13 @@ class StudentAdmin(ImportExportModelAdmin):
     generate_idp_group.short_description = "Генерувати ІНП для груп студентів за кафедрами"
 
 
-class CourseApplicationAdmin(admin.ModelAdmin):
+class CourseApplicationAdmin(ImportExportModelAdmin):
     list_display = ('student', 'course', 'priority')
     search_fields = ('student__user__username', 'course__name')
     list_filter = ('course__name', 'student__department__name')
 
 
-class CourseEnrollmentAdmin(admin.ModelAdmin):
+class CourseEnrollmentAdmin(ImportExportModelAdmin):
     list_display = ('student', 'course')
     search_fields = ('student__user__username', 'course__name')
     list_filter = ('course__name', 'student__department__name')
