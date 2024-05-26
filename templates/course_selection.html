@@ -15,7 +15,9 @@
                 {% if course.catalog|stringformat:"s" == catalog %}
                   <li>
                     <p>{{ course.name }} - Викладач: {{ course.professor.name }}</p>
-                    {% if course.user_priority %}
+                    {% if course.is_enrolled %}
+                      <span>(Ви вже зараховані на курс з цього каталогу)</span>
+                    {% elif course.user_priority %}
                       <span>(Заявка подана, пріоритет: {{ course.user_priority }})</span>
                     {% else %}
                       <form method="post" action="{% url 'course_selection' %}">
@@ -44,7 +46,9 @@
                 {% if course.catalog|stringformat:"s" == catalog %}
                   <li>
                     <p>{{ course.name }} - Викладач: {{ course.professor.name }}</p>
-                    {% if course.user_priority %}
+                    {% if course.is_enrolled %}
+                      <span>(Ви вже зараховані на курс з цього каталогу)</span>
+                    {% elif course.user_priority %}
                       <span>(Заявка подана, пріоритет: {{ course.user_priority }})</span>
                     {% else %}
                       <form method="post" action="{% url 'course_selection' %}">

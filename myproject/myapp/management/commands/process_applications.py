@@ -30,7 +30,7 @@ def process_applications_task(faculty_ids=None):
             all_scores.extend(selected_students)
 
         final_selection = select_students_for_catalog(all_scores, catalog_courses)
-        display_selected_students(final_selection)
+        assign_students_to_courses(final_selection, catalog_courses)
 
 
 def calculate_priority_score(student, application):
@@ -48,13 +48,21 @@ def select_students_for_catalog(all_scores, catalog_courses):
     return selected_students
 
 
-def display_selected_students(final_selection):
+def assign_students_to_courses(final_selection, catalog_courses):
     total_selected = 0
     for student_id, courses in final_selection.items():
         student = Student.objects.get(id=student_id)
         for course, score in courses:
-            print(f"{student.user.username} обрано для курсу {course.name} з балом {score}")
-            total_selected += 1
+            # Перевірка на дублювання та зарахування тільки на один курс з каталогу
+            if not CourseEnrollment.objects.filter(student=student, course__catalog=course.catalog).exists():
+                print(f"{student.user.username} обрано для курсу {course.name} з балом {score}")
+                # Записуємо інформацію про зарахування в базу даних
+                CourseEnrollment.objects.create(student=student, course=course)
+                # Видаляємо заявку студента на зарахований курс
+                CourseApplication.objects.filter(student=student, course=course).delete()
+                # Видаляємо всі інші заявки студента в цьому каталозі
+                CourseApplication.objects.filter(student=student, course__catalog=course.catalog).delete()
+                total_selected += 1
 
     print(f'Оброблено {total_selected} студентів.')
     if total_selected < len(final_selection):

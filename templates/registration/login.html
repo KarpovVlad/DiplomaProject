@@ -3,11 +3,13 @@
 {% block title %}Login{% endblock %}
 
 {% block content %}
-<h2>Login</h2>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Login</button>
-    <p><a class="forgot-password" href="{% url 'password_reset' %}">Забули пароль?</a></p>
-</form>
+<div class="login-container">
+    <h2 class="login-title">Login</h2>
+    <form method="post" class="login-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="login-btn">Login</button>
+        <p><a class="forgot-password" href="{% url 'password_reset' %}">Забули пароль?</a></p>
+    </form>
+</div>
 {% endblock %}
