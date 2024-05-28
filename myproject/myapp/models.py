@@ -73,7 +73,9 @@ class Student(models.Model):
         return CourseApplication.objects.filter(student=self, course=course, passed=True).exists()
 
     def __str__(self):
-        return f"{self.user.username} ({self.department.name}, Course: {self.current_course})"
+        if self.user:
+            return f"{self.user.username} ({self.department.name}, Course: {self.current_course})"
+        return f"Unknown user ({self.department.name}, Course: {self.current_course})"
 
 
 class CourseApplication(models.Model):

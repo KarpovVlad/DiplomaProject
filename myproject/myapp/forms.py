@@ -16,27 +16,34 @@ class StudentForm(forms.ModelForm):
 
 
 class BulkUserCreationForm(forms.Form):
-    num_users = forms.IntegerField(label='Кількість користувачів', min_value=1, max_value=1000)
+    number_of_users = forms.IntegerField(min_value=1, max_value=1000)
 
     def save(self):
+        number_of_users = self.cleaned_data['number_of_users']
         users = []
-        for _ in range(self.cleaned_data['num_users']):
-            username = self.generate_random_username()
-            password = self.generate_random_password()
-            user = User(username=username)
-            user.set_password(password)
-            user.save()
+
+        for _ in range(number_of_users):
+            username = self.generate_unique_username()
+            email = self.generate_random_email()
+            password = self.generate_temporary_password()
+
+            user = User.objects.create_user(username=username, email=email, password=password)
+            user.raw_password = password  # Зберігаємо незахищений пароль у атрибуті об'єкта User
             users.append(user)
+
         return users
 
-    def generate_random_username(self, length=8):
-        letters = string.ascii_lowercase
-        return ''.join(random.choice(letters) for i in range(length))
+    def generate_unique_username(self):
+        while True:
+            username = 'user' + ''.join(random.choices(string.ascii_lowercase + string.digits, k=6))
+            if not User.objects.filter(username=username).exists():
+                return username
 
-    def generate_random_password(self, length=12):
-        letters = string.ascii_letters
-        digits = string.digits
-        special_chars = string.punctuation
-        all_chars = letters + digits + special_chars
-        password = ''.join(random.choice(all_chars) for i in range(length))
-        return password
+    def generate_random_email(self):
+        random_string = ''.join(random.choices(string.ascii_lowercase + string.digits, k=10))
+        random_digits = ''.join(random.choices(string.digits, k=3))
+        email = f"{random_string}{random_digits}@gmail.com"
+        return email
+
+    def generate_temporary_password(self):
+        return ''.join(random.choices(string.ascii_letters + string.digits, k=12))

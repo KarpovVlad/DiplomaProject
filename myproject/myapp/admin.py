@@ -1,21 +1,28 @@
 from datetime import datetime
 from django.urls import reverse
-from import_export import resources
 from import_export.admin import ImportExportModelAdmin
+from import_export.results import RowResult
 from .models import University, Faculty, Department, Professor, Course, Student, CourseApplication, CourseEnrollment
 from docx import Document
 from django.utils.html import format_html
 from django.core.management import call_command
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from django.contrib.auth.models import User
 from .forms import BulkUserCreationForm
 from django.shortcuts import render, redirect
 from django.urls import path
 from django.http import HttpResponse
 from django.utils.text import slugify
+from import_export import resources, fields
+from import_export.widgets import ForeignKeyWidget
+from django.contrib.auth.models import User
+from django.db import models
 import io
 import csv
+import random
+import string
+
+temporary_passwords = {}
 
 
 def generate_idp_for_student(student_id):
@@ -86,9 +93,67 @@ class CourseAdmin(ImportExportModelAdmin):
 
 
 class StudentResource(resources.ModelResource):
+    user = fields.Field(
+        column_name='user__username',
+        attribute='user',
+        widget=ForeignKeyWidget(User, 'username')
+    )
+    department = fields.Field(
+        column_name='department__name',
+        attribute='department',
+        widget=ForeignKeyWidget(Department, 'name')
+    )
+
     class Meta:
         model = Student
-        fields = ('user__username', 'department__name', 'average_grade', 'document')
+        fields = ('id', 'user__username', 'user__email', 'department__name', 'average_grade', 'current_course')
+        import_id_fields = ['id']
+
+    def before_import_row(self, row, **kwargs):
+        # Генерація унікального ID для студента
+        if not row.get('id'):
+            max_id = Student.objects.aggregate(max_id=models.Max('id'))['max_id']
+            row['id'] = (max_id or 0) + 1
+
+        # Перевірка, чи відсутнє поле user__username в CSV-файлі
+        if not row.get('user__username'):
+            username = self.generate_unique_username()
+            email = self.generate_random_email()
+            user = User.objects.create_user(username=username, email=email, password='temporarypassword')
+            row['user__username'] = username
+            row['user__email'] = email
+            row['user'] = user.id
+        else:
+            if not row.get('user__email'):
+                email = self.generate_random_email()
+                row['user__email'] = email
+
+            try:
+                user = User.objects.get(username=row['user__username'])
+                row['user'] = user.id
+            except User.DoesNotExist:
+                email = row['user__email'] if row.get('user__email') else self.generate_random_email()
+                user = User.objects.create_user(username=row['user__username'], email=email, password='temporarypassword')
+                row['user'] = user.id
+
+        # Перевірка та створення відділу, якщо він вказаний в CSV-файлі
+        if row.get('department__name'):
+            department, created = Department.objects.get_or_create(name=row['department__name'])
+            row['department'] = department.id
+        else:
+            raise ValueError("Department is required for each student")
+
+    def generate_unique_username(self):
+        while True:
+            username = 'user' + ''.join(random.choices(string.ascii_lowercase + string.digits, k=6))
+            if not User.objects.filter(username=username).exists():
+                return username
+
+    def generate_random_email(self):
+        random_string = ''.join(random.choices(string.ascii_lowercase + string.digits, k=10))
+        random_digits = ''.join(random.choices(string.digits, k=3))
+        email = f"{random_string}{random_digits}@gmail.com"
+        return email
 
 
 class StudentAdmin(ImportExportModelAdmin):
@@ -127,6 +192,32 @@ class StudentAdmin(ImportExportModelAdmin):
 
     process_applications.short_description = "Запустити алгоритм багатокритеріального вибору"
 
+    def generate_log_entries(self, result, request):
+        from django.contrib.admin.models import LogEntry, ADDITION, CHANGE
+        from django.contrib.contenttypes.models import ContentType
+
+        for row_result in result.rows:
+            if hasattr(row_result, 'object'):
+                object_repr = str(row_result.object)
+                action_flag = ADDITION if row_result.import_type == RowResult.IMPORT_TYPE_NEW else CHANGE
+                LogEntry.objects.log_action(
+                    user_id=request.user.pk,
+                    content_type_id=ContentType.objects.get_for_model(row_result.object.__class__).pk,
+                    object_id=row_result.object.pk,
+                    object_repr=object_repr,
+                    action_flag=action_flag,
+                )
+            else:
+                object_repr = 'Unknown object'
+                action_flag = ADDITION if row_result.import_type == RowResult.IMPORT_TYPE_NEW else CHANGE
+                LogEntry.objects.log_action(
+                    user_id=request.user.pk,
+                    content_type_id=ContentType.objects.get_for_model(Student).pk,
+                    object_id=None,
+                    object_repr=object_repr,
+                    action_flag=action_flag,
+                )
+
 
 class CourseApplicationAdmin(ImportExportModelAdmin):
     list_display = ('student', 'course', 'priority')
@@ -138,6 +229,48 @@ class CourseEnrollmentAdmin(ImportExportModelAdmin):
     list_display = ('student', 'course')
     search_fields = ('student__user__username', 'course__name')
     list_filter = ('course__name', 'student__department__name')
+    actions = ['export_to_docx']
+
+    def export_to_docx(self, request, queryset):
+        # Create a new Document
+        document = Document()
+
+        # Group enrollments by course
+        enrollments_by_course = {}
+        for enrollment in queryset:
+            if enrollment.course not in enrollments_by_course:
+                enrollments_by_course[enrollment.course] = []
+            enrollments_by_course[enrollment.course].append(enrollment.student)
+
+        # Add a heading to the document
+        document.add_heading('Звіт по сформованим групам', level=1)
+
+        # Iterate over each course and add its enrollments to the document
+        for course, students in enrollments_by_course.items():
+            document.add_heading(f"{course.name} - Викладач: {course.professor.name} - Зайнятих місць: {len(students)}", level=2)
+            table = document.add_table(rows=1, cols=4)
+            hdr_cells = table.rows[0].cells
+            hdr_cells[0].text = 'Студент'
+            hdr_cells[1].text = 'Електронна пошта'
+            hdr_cells[2].text = 'Курс'
+            hdr_cells[3].text = 'Кафедра'
+
+            for student in students:
+                row_cells = table.add_row().cells
+                row_cells[0].text = f"{student.user.first_name} {student.user.last_name}"
+                row_cells[1].text = student.user.email
+                row_cells[2].text = str(student.current_course)
+                row_cells[3].text = student.department.name
+
+            document.add_paragraph('')  # Add a blank line after each course
+
+        # Generate the response
+        response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document')
+        response['Content-Disposition'] = 'attachment; filename=course_enrollments.docx'
+        document.save(response)
+        return response
+
+    export_to_docx.short_description = "Експортувати в DOCX"
 
 
 class CustomUserAdmin(UserAdmin):
@@ -156,6 +289,8 @@ class CustomUserAdmin(UserAdmin):
             form = BulkUserCreationForm(request.POST)
             if form.is_valid():
                 users = form.save()
+                for user in users:
+                    temporary_passwords[user.username] = user.raw_password  # Зберігаємо незахищені паролі
                 self.message_user(request, f"Створено {len(users)} користувачів.")
                 return redirect('..')
         else:
@@ -174,10 +309,11 @@ class CustomUserAdmin(UserAdmin):
         response['Content-Disposition'] = f'attachment; filename="users_{slugify(str(datetime.now()))}.csv"'
 
         writer = csv.writer(response)
-        writer.writerow(['Username', 'Email', 'Password'])
+        writer.writerow(['ID', 'Username', 'Email', 'Password'])
 
         for user in users:
-            writer.writerow([user.username, user.email, user.password])
+            password = temporary_passwords.get(user.username, "N/A")
+            writer.writerow([user.id, user.username, user.email, password])
 
         return response
 

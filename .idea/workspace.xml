@@ -5,19 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2ae0ba13-5b24-4393-8309-9266090fd9aa" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/admin/auth/user/change_list.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/admin/bulk_add_users.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/documents/vladster567@gmail.com_IDP.docx" beforeDir="false" afterPath="$PROJECT_DIR$/documents/vladster567@gmail.com_IDP.docx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/myproject/myapp/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/myapp/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/myproject/myapp/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/myapp/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myproject/myapp/management/commands/process_applications.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/myapp/management/commands/process_applications.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myproject/myapp/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/myapp/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/DiplomaApp/css/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/DiplomaApp/css/styles.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/course_selection.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/course_selection.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/personal_cabinet.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/personal_cabinet.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/registration/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/registration/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/myproject/myapp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/myproject/myapp/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,7 +134,22 @@
       <workItem from="1716274771857" duration="17214000" />
       <workItem from="1716368978978" duration="1649000" />
       <workItem from="1716459005867" duration="1372000" />
-      <workItem from="1716718098325" duration="6594000" />
+      <workItem from="1716718098325" duration="8842000" />
+      <workItem from="1716734086876" duration="500000" />
+      <workItem from="1716747658206" duration="83000" />
+      <workItem from="1716818035472" duration="3458000" />
+      <workItem from="1716825025651" duration="1485000" />
+      <workItem from="1716826753401" duration="93000" />
+      <workItem from="1716827010750" duration="322000" />
+      <workItem from="1716827387595" duration="231000" />
+      <workItem from="1716827875984" duration="54000" />
+      <workItem from="1716828009598" duration="749000" />
+      <workItem from="1716838523767" duration="528000" />
+      <workItem from="1716839384862" duration="651000" />
+      <workItem from="1716840542052" duration="105000" />
+      <workItem from="1716840792897" duration="107000" />
+      <workItem from="1716840955235" duration="322000" />
+      <workItem from="1716841445940" duration="713000" />
     </task>
     <servers />
   </component>
