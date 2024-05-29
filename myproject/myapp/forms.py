@@ -28,7 +28,7 @@ class BulkUserCreationForm(forms.Form):
             password = self.generate_temporary_password()
 
             user = User.objects.create_user(username=username, email=email, password=password)
-            user.raw_password = password  # Зберігаємо незахищений пароль у атрибуті об'єкта User
+            user.raw_password = password
             users.append(user)
 
         return users

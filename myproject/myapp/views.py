@@ -94,14 +94,12 @@ class CourseSelectionView(View):
 
             available_courses = Course.objects.filter(department_id__in=department_ids, semester__in=semesters)
 
-            # Отримуємо заявки та зарахування студента
             applications = CourseApplication.objects.filter(student=student)
             enrollments = CourseEnrollment.objects.filter(student=student)
             enrolled_catalogs = enrollments.values_list('course__catalog', flat=True).distinct()
 
             course_priorities = {app.course_id: app.priority for app in applications}
 
-            # Додаємо атрибут пріоритету до кожного курсу в списку доступних
             for course in available_courses:
                 course.user_priority = course_priorities.get(course.id, None)
                 course.is_enrolled = course.catalog in enrolled_catalogs
@@ -129,7 +127,6 @@ class CourseSelectionView(View):
 
             course = Course.objects.get(id=course_id)
 
-            # Перевірка чи студент вже зарахований на курс з цього каталогу
             if CourseEnrollment.objects.filter(student=student, course__catalog=course.catalog).exists():
                 messages.error(request, 'Ви вже зараховані на курс з цього каталогу.')
                 return redirect('course_selection')

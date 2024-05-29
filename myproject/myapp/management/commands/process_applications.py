@@ -2,9 +2,9 @@ from django.core.management.base import BaseCommand
 from myproject.myapp.models import Student, CourseApplication, Course, CourseEnrollment
 
 
-def process_applications_task(faculty_ids=None):
-    if faculty_ids:
-        applications = CourseApplication.objects.filter(student__department__faculty__id__in=faculty_ids)
+def process_applications_task(student_ids=None):
+    if student_ids:
+        applications = CourseApplication.objects.filter(student__id__in=student_ids)
     else:
         applications = CourseApplication.objects.all()
 
@@ -15,22 +15,32 @@ def process_applications_task(faculty_ids=None):
         print(f"Обробка каталогу: {catalog}")
         catalog_courses = Course.objects.filter(catalog=catalog)
         catalog_applications = applications.filter(course__in=catalog_courses)
-        all_scores = []
 
-        for course in catalog_courses:
-            relevant_applications = catalog_applications.filter(course=course)
-            scores = []
+        while catalog_applications.exists():
+            for course in catalog_courses:
+                if course.seats > CourseEnrollment.objects.filter(course=course).count():
+                    relevant_applications = catalog_applications.filter(course=course)
+                    if relevant_applications.exists():
+                        scores = []
 
-            for app in relevant_applications:
-                score = calculate_priority_score(app.student, app)
-                scores.append((score, app.student, app.course))
+                        for app in relevant_applications:
+                            score = calculate_priority_score(app.student, app)
+                            scores.append((score, app.student, app.course))
 
-            scores.sort(reverse=True, key=lambda x: x[0])
-            selected_students = scores[:course.seats]
-            all_scores.extend(selected_students)
+                        scores.sort(reverse=True, key=lambda x: x[0])
 
-        final_selection = select_students_for_catalog(all_scores, catalog_courses)
-        assign_students_to_courses(final_selection, catalog_courses)
+                        if scores:
+                            best_score, best_student, best_course = scores[0]
+                            CourseEnrollment.objects.create(student=best_student, course=best_course)
+
+                            CourseApplication.objects.filter(student=best_student, course__catalog=catalog).delete()
+
+                            print(
+                                f"{best_student.user.username} обрано для курсу {best_course.name} з балом {best_score}")
+
+                            catalog_applications = catalog_applications.exclude(student=best_student)
+
+    print('Розподіл студентів завершено.')
 
 
 def calculate_priority_score(student, application):
@@ -40,42 +50,12 @@ def calculate_priority_score(student, application):
     return score
 
 
-def select_students_for_catalog(all_scores, catalog_courses):
-    selected_students = {}
-    for score, student, course in all_scores:
-        if student.id not in selected_students or len(selected_students[student.id]) < 1:
-            selected_students.setdefault(student.id, []).append((course, score))
-    return selected_students
-
-
-def assign_students_to_courses(final_selection, catalog_courses):
-    total_selected = 0
-    for student_id, courses in final_selection.items():
-        student = Student.objects.get(id=student_id)
-        for course, score in courses:
-            # Перевірка на дублювання та зарахування тільки на один курс з каталогу
-            if not CourseEnrollment.objects.filter(student=student, course__catalog=course.catalog).exists():
-                print(f"{student.user.username} обрано для курсу {course.name} з балом {score}")
-                # Записуємо інформацію про зарахування в базу даних
-                CourseEnrollment.objects.create(student=student, course=course)
-                # Видаляємо заявку студента на зарахований курс
-                CourseApplication.objects.filter(student=student, course=course).delete()
-                # Видаляємо всі інші заявки студента в цьому каталозі
-                CourseApplication.objects.filter(student=student, course__catalog=course.catalog).delete()
-                total_selected += 1
-
-    print(f'Оброблено {total_selected} студентів.')
-    if total_selected < len(final_selection):
-        print('Не вдалося обробити деякі заявки через невистачу місць.')
-
-
 class Command(BaseCommand):
     help = 'Розподіл студентів по дисциплінах'
 
     def add_arguments(self, parser):
-        # Додавання аргументу для фільтрації за факультетом
-        parser.add_argument('--faculty', nargs='+', type=int, help='ID факультетів для обробки')
+        parser.add_argument('--students', nargs='+', type=int, help='ID студентів для обробки')
 
     def handle(self, *args, **options):
-        faculty_ids = options.get('faculty')
-        process_applications_task(faculty_ids=faculty_ids)
+        student_ids = options.get('students')
+        process_applications_task(student_ids=student_ids)

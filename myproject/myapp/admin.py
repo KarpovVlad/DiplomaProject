@@ -17,6 +17,7 @@ from import_export import resources, fields
 from import_export.widgets import ForeignKeyWidget
 from django.contrib.auth.models import User
 from django.db import models
+from django.contrib import messages
 import io
 import csv
 import random
@@ -87,9 +88,10 @@ class ProfessorAdmin(ImportExportModelAdmin):
 
 
 class CourseAdmin(ImportExportModelAdmin):
-    list_display = ('name', 'department', 'professor', 'seats', 'prerequisite')
-    search_fields = ('name', 'professor__name', 'department__name')
-    list_filter = ('department__name', 'professor__name', 'department__faculty__university__name')
+    list_display = ('name', 'department', 'professor', 'seats', 'prerequisite', 'catalog', 'semester')
+    search_fields = ('name', 'professor__name', 'department__name', 'catalog', 'semester')
+    list_filter = (
+    'department__name', 'professor__name', 'department__faculty__university__name', 'catalog', 'semester')
 
 
 class StudentResource(resources.ModelResource):
@@ -110,12 +112,10 @@ class StudentResource(resources.ModelResource):
         import_id_fields = ['id']
 
     def before_import_row(self, row, **kwargs):
-        # Генерація унікального ID для студента
         if not row.get('id'):
             max_id = Student.objects.aggregate(max_id=models.Max('id'))['max_id']
             row['id'] = (max_id or 0) + 1
 
-        # Перевірка, чи відсутнє поле user__username в CSV-файлі
         if not row.get('user__username'):
             username = self.generate_unique_username()
             email = self.generate_random_email()
@@ -133,10 +133,10 @@ class StudentResource(resources.ModelResource):
                 row['user'] = user.id
             except User.DoesNotExist:
                 email = row['user__email'] if row.get('user__email') else self.generate_random_email()
-                user = User.objects.create_user(username=row['user__username'], email=email, password='temporarypassword')
+                user = User.objects.create_user(username=row['user__username'], email=email,
+                                                password='temporarypassword')
                 row['user'] = user.id
 
-        # Перевірка та створення відділу, якщо він вказаний в CSV-файлі
         if row.get('department__name'):
             department, created = Department.objects.get_or_create(name=row['department__name'])
             row['department'] = department.id
@@ -187,7 +187,9 @@ class StudentAdmin(ImportExportModelAdmin):
 
     def process_applications(self, request, queryset):
         output = io.StringIO()
-        call_command('process_applications', stdout=output)
+        all_students = Student.objects.all()
+        student_ids = list(all_students.values_list('id', flat=True))
+        call_command('process_applications', '--students', *student_ids, stdout=output)
         self.message_user(request, output.getvalue())
 
     process_applications.short_description = "Запустити алгоритм багатокритеріального вибору"
@@ -219,10 +221,46 @@ class StudentAdmin(ImportExportModelAdmin):
                 )
 
 
+class CourseApplicationResource(resources.ModelResource):
+    student = fields.Field(
+        column_name='student',
+        attribute='student',
+        widget=ForeignKeyWidget(Student, 'id')
+    )
+    course = fields.Field(
+        column_name='course',
+        attribute='course',
+        widget=ForeignKeyWidget(Course, 'id')
+    )
+
+    class Meta:
+        model = CourseApplication
+        fields = ('id', 'student', 'course', 'priority', 'semester')
+        import_id_fields = ['id']
+
+    def before_import_row(self, row, **kwargs):
+        if not row.get('priority'):
+            row['priority'] = random.randint(1, 5)
+        if not row.get('semester'):
+            row['semester'] = random.randint(3, 8)
+
+
 class CourseApplicationAdmin(ImportExportModelAdmin):
-    list_display = ('student', 'course', 'priority')
+    resource_class = CourseApplicationResource
+    list_display = ('student', 'course', 'priority', 'semester')
     search_fields = ('student__user__username', 'course__name')
     list_filter = ('course__name', 'student__department__name')
+
+    def delete_queryset(self, request, queryset):
+        if request.POST.get('action') == 'delete_selected':
+            if request.POST.get('select_across') == '1':
+                total = CourseApplication.objects.count()
+                CourseApplication.objects.all().delete()
+                self.message_user(request, f'Successfully deleted all {total} course applications.', messages.SUCCESS)
+            else:
+                super().delete_queryset(request, queryset)
+        else:
+            super().delete_queryset(request, queryset)
 
 
 class CourseEnrollmentAdmin(ImportExportModelAdmin):
@@ -231,23 +269,33 @@ class CourseEnrollmentAdmin(ImportExportModelAdmin):
     list_filter = ('course__name', 'student__department__name')
     actions = ['export_to_docx']
 
+    def delete_queryset(self, request, queryset):
+        if request.POST.get('action') == 'delete_selected':
+            if request.POST.get('select_across') == '1':
+                total = CourseEnrollment.objects.count()
+                CourseEnrollment.objects.all().delete()
+                self.message_user(request, f'Successfully deleted all {total} course enrollments.', messages.SUCCESS)
+            else:
+                super().delete_queryset(request, queryset)
+        else:
+            super().delete_queryset(request, queryset)
+
     def export_to_docx(self, request, queryset):
         # Create a new Document
         document = Document()
 
-        # Group enrollments by course
         enrollments_by_course = {}
-        for enrollment in queryset:
+        all_enrollments = CourseEnrollment.objects.all()
+        for enrollment in all_enrollments:
             if enrollment.course not in enrollments_by_course:
                 enrollments_by_course[enrollment.course] = []
             enrollments_by_course[enrollment.course].append(enrollment.student)
 
-        # Add a heading to the document
         document.add_heading('Звіт по сформованим групам', level=1)
 
-        # Iterate over each course and add its enrollments to the document
         for course, students in enrollments_by_course.items():
-            document.add_heading(f"{course.name} - Викладач: {course.professor.name} - Зайнятих місць: {len(students)}", level=2)
+            document.add_heading(f"{course.name} - Викладач: {course.professor.name} - Зайнятих місць: {len(students)}",
+                                 level=2)
             table = document.add_table(rows=1, cols=4)
             hdr_cells = table.rows[0].cells
             hdr_cells[0].text = 'Студент'
@@ -262,7 +310,7 @@ class CourseEnrollmentAdmin(ImportExportModelAdmin):
                 row_cells[2].text = str(student.current_course)
                 row_cells[3].text = student.department.name
 
-            document.add_paragraph('')  # Add a blank line after each course
+            document.add_paragraph('')
 
         # Generate the response
         response = HttpResponse(content_type='application/vnd.openxmlformats-officedocument.wordprocessingml.document')
@@ -290,7 +338,7 @@ class CustomUserAdmin(UserAdmin):
             if form.is_valid():
                 users = form.save()
                 for user in users:
-                    temporary_passwords[user.username] = user.raw_password  # Зберігаємо незахищені паролі
+                    temporary_passwords[user.username] = user.raw_password
                 self.message_user(request, f"Створено {len(users)} користувачів.")
                 return redirect('..')
         else:

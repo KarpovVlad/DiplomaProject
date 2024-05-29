@@ -1,10 +1,8 @@
-/* Reset some basic elements */
 body, h1, h2, h3, h4, h5, h6, p, ul {
     margin: 0;
     padding: 0;
 }
 
-/* Set a global font and background color */
 body {
     font-family: Arial, sans-serif;
     background-color: #f5f5f5;
@@ -13,11 +11,9 @@ body {
     padding: 20px;
 }
 
-/* Style the header */
 header {
-    background: #4b4b4b; /* Asphalt grey color */
+    background: #4b4b4b;
     color: #fff;
-    padding: 10px 0;
     text-align: center;
     margin-bottom: 20px;
     position: relative;
@@ -32,7 +28,6 @@ header h1 {
     font-size: 2em;
 }
 
-/* Style the navigation bar */
 nav ul {
     list-style: none;
     padding: 0;
@@ -53,13 +48,12 @@ nav ul li a:hover {
     text-decoration: underline;
 }
 
-/* Style the login and logout buttons */
 #logout-form {
     margin: 0;
 }
 
 #logout-form button {
-    background: darkred; /* Asphalt grey */
+    background: darkred;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -68,16 +62,15 @@ nav ul li a:hover {
 }
 
 #logout-form button:hover {
-    background: #333; /* Darker grey */
+    background: #333;
 }
 
-/* Style the main content area */
 main {
     background: #fff;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 80%; /* Adjusted for more content */
+    width: 80%;
     margin: 0 auto;
 }
 
@@ -88,10 +81,9 @@ main h1, main h2 {
     margin-bottom: 20px;
 }
 
-/* Style paragraphs and lists */
 main p {
     margin-bottom: 20px;
-    text-align: left; /* Align text to the left */
+    text-align: left;
 }
 
 main ul {
@@ -99,9 +91,8 @@ main ul {
     margin-bottom: 20px;
 }
 
-/* Style forms and buttons */
 form.student-form p {
-    text-align: left; /* Align form labels to the left */
+    text-align: left;
 }
 
 form input[type="text"], form input[type="number"], form input[type="password"], form select {
@@ -112,29 +103,28 @@ form input[type="text"], form input[type="number"], form input[type="password"],
 }
 
 form input.course-input {
-    width: 50px; /* Fixed width for the course input */
-    text-align: center; /* Center the number in the input */
+    width: 50px;
+    text-align: center;
 }
 
 form button, .submit-btn {
-    background: #4b4b4b; /* Asphalt grey */
+    background: #4b4b4b;
     color: #fff;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 5px;
-    margin-left: 10px; /* To provide space between buttons */
+    margin-left: 10px;
 }
 
 form button:hover, .submit-btn:hover {
-    background: #333; /* Darker grey */
+    background: #333;
 }
 
 .edit-btn {
-    float: right; /* Move the edit button to the right */
+    float: right;
 }
 
-/* Style tables */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -155,7 +145,6 @@ table tr:nth-child(even) {
     background: #f9f9f9;
 }
 
-/* Style links */
 a {
     color: #4CAF50;
     text-decoration: none;
@@ -165,7 +154,6 @@ a:hover {
     text-decoration: underline;
 }
 
-/* Additional styles */
 a.forgot-password {
     color: cornflowerblue;
 }
@@ -174,7 +162,6 @@ a.forgot-password:hover {
     text-decoration: underline;
 }
 
-/* Button group styles */
 .button-group {
     text-align: center;
     margin-top: 20px;
@@ -195,7 +182,6 @@ a.forgot-password:hover {
     background-color: #333;
 }
 
-/* Semester block styles */
 .semester-group {
     display: flex;
     flex-wrap: wrap;
@@ -207,7 +193,7 @@ a.forgot-password:hover {
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 48%; /* Adjust to have two blocks per row */
+    width: 48%;
     margin-bottom: 20px;
 }
 
@@ -220,7 +206,6 @@ a.forgot-password:hover {
     padding-left: 20px;
 }
 
-/* Additional styles for semester blocks layout */
 .semester-group {
     display: flex;
     flex-wrap: wrap;
@@ -228,18 +213,17 @@ a.forgot-password:hover {
 }
 
 .semester-block {
-    flex: 1 1 calc(50% - 20px); /* Two blocks per row with space between */
+    flex: 1 1 calc(50% - 20px);
 }
 
-/* Styles for the applications container */
 .applications-container {
     background: #fff;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 80%; /* Adjusted for more content */
+    width: 80%;
     margin: 0 auto;
-    text-align: left; /* Align text to the left */
+    text-align: left;
 }
 
 .applications-container h1 {
@@ -272,7 +256,6 @@ a.forgot-password:hover {
     background-color: #333;
 }
 
-/* Dashboard specific styles */
 .dashboard-container {
     text-align: center;
     margin-top: 20px;
@@ -286,7 +269,7 @@ a.forgot-password:hover {
 }
 
 .dashboard-action-button {
-    background: #4b4b4b; /* Asphalt grey */
+    background: #4b4b4b;
     color: #fff;
     border: none;
     padding: 10px 20px;
@@ -296,7 +279,7 @@ a.forgot-password:hover {
 }
 
 .dashboard-action-button:hover {
-    background: #333; /* Darker grey */
+    background: #333;
 }
 
 .course-selection-container {
@@ -359,20 +342,19 @@ a.forgot-password:hover {
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 5px;
-    margin-top: 20px; /* Added margin to space it out from other content */
+    margin-top: 20px;
 }
 
 .back-btn:hover {
     background-color: #333;
 }
 
-/* Personal Cabinet specific styles */
 .personal-cabinet-container {
     background: #fff;
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 80%; /* Adjusted for more content */
+    width: 80%;
     margin: 0 auto;
     text-align: left;
 }
