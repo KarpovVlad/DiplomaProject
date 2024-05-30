@@ -1,6 +1,6 @@
 import os
 from pathlib import Path
-from decouple import config
+#from decouple import config
 from myproject import myapp, project
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -63,6 +63,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'DiplomaProject.wsgi.application'
 
+ALLOWED_HOSTS = ['diplomaproject.herokuapp.com']
+
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
@@ -114,15 +116,6 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
-# Email settings for Gmail
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = config('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD')
-DEFAULT_FROM_EMAIL = config('EMAIL_HOST_USER')
 
 
 # Налаштування домену та протоколу
