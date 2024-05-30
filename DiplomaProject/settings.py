@@ -26,7 +26,7 @@ INSTALLED_APPS = [
     'myproject.myapp',
     'import_export',
     'django_extensions',
-    'django_diagram'
+    'django_diagram',
     'whitenoise.runserver_nostatic',
 ]
 
