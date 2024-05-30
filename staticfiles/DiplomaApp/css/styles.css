@@ -1,0 +1,382 @@
+body, h1, h2, h3, h4, h5, h6, p, ul {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+header {
+    background: #4b4b4b;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 20px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2em;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 10px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+#logout-form {
+    margin: 0;
+}
+
+#logout-form button {
+    background: darkred;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#logout-form button:hover {
+    background: #333;
+}
+
+main {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    margin: 0 auto;
+}
+
+main h1, main h2 {
+    font-size: 1.5em;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+main p {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+main ul {
+    list-style: disc inside;
+    margin-bottom: 20px;
+}
+
+form.student-form p {
+    text-align: left;
+}
+
+form input[type="text"], form input[type="number"], form input[type="password"], form select {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form input.course-input {
+    width: 50px;
+    text-align: center;
+}
+
+form button, .submit-btn {
+    background: #4b4b4b;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-left: 10px;
+}
+
+form button:hover, .submit-btn:hover {
+    background: #333;
+}
+
+.edit-btn {
+    float: right;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table th, table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+table th {
+    background: #f2f2f2;
+}
+
+table tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+a.forgot-password {
+    color: cornflowerblue;
+}
+
+a.forgot-password:hover {
+    text-decoration: underline;
+}
+
+.button-group {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.button-group .btn-secondary {
+    display: inline-block;
+    margin: 0 10px;
+    padding: 10px 20px;
+    background-color: #4b4b4b;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.button-group .btn-secondary:hover {
+    background-color: #333;
+}
+
+.semester-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.semester-block {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 48%;
+    margin-bottom: 20px;
+}
+
+.semester-block h2 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.semester-block ul {
+    padding-left: 20px;
+}
+
+.semester-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.semester-block {
+    flex: 1 1 calc(50% - 20px);
+}
+
+.applications-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.applications-container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.applications-list {
+    list-style: disc inside;
+    margin-bottom: 20px;
+}
+
+.applications-list li {
+    margin-bottom: 10px;
+}
+
+.btn-primary {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4b4b4b;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn-primary:hover {
+    background-color: #333;
+}
+
+.dashboard-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.dashboard-button-container {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.dashboard-action-button {
+    background: #4b4b4b;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.dashboard-action-button:hover {
+    background: #333;
+}
+
+.course-selection-container {
+    text-align: center;
+}
+
+.catalog-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.catalog-row {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.catalog-block {
+    background-color: #f5f5f5;
+    padding: 15px;
+    border-radius: 5px;
+    width: 30%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.catalog-block h3 {
+    text-align: center;
+}
+
+.catalog-block ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.catalog-block li {
+    margin-bottom: 10px;
+}
+
+.submit-btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.submit-btn:hover {
+    background-color: #45a049;
+}
+
+.back-btn {
+    background-color: #4b4b4b;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.back-btn:hover {
+    background-color: #333;
+}
+
+.personal-cabinet-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.cabinet-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.student-form {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.cabinet-subtitle {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.centered-link {
+    text-align: center;
+    display: block;
+    margin-bottom: 20px;
+}
