@@ -1,6 +1,5 @@
 import os
 from pathlib import Path
-#from decouple import config
 from myproject import myapp, project
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -12,7 +11,7 @@ SECRET_KEY = 'django-insecure-@o1cu*_nc)4t-ay(g&722(d7w*q_&6t)3l(=ysi&ywrz1l9dk-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['diplomaproject.herokuapp.com']
 
 # Application definition
 
@@ -62,8 +61,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'DiplomaProject.wsgi.application'
-
-ALLOWED_HOSTS = ['diplomaproject.herokuapp.com']
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
@@ -129,4 +126,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = 'D:/Users/User/PycharmProjects/DiplomaProject/'
 MEDIA_URL = '/media/'
-
